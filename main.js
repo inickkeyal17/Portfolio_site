@@ -223,6 +223,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- 4.5. Interactive Awards Filter Switcher ---
+  const awardTabBtns = document.querySelectorAll('.award-tab-btn');
+  const awardCards = document.querySelectorAll('.award-interactive-card');
+
+  awardTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      awardTabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterVal = btn.getAttribute('data-award');
+
+      awardCards.forEach(card => {
+        const cardId = card.getAttribute('data-award-id');
+        if (filterVal === 'all' || filterVal === cardId) {
+          card.style.display = 'flex';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'scale(1)';
+          }, 50);
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 250);
+        }
+      });
+    });
+  });
+
   // --- 5. Toast Notification Utility ---
   const toast = document.getElementById('toast');
   const showToast = (message) => {
