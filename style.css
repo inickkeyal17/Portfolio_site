@@ -213,15 +213,12 @@ a {
 /* ==========================================================================
    HERO STAGE (ATMOSPHERIC ORANGE & CRIMSON GRADIENT MESH)
    ========================================================================== */
-/* ==========================================================================
-   HERO STAGE (ATMOSPHERIC ORANGE & CRIMSON GRADIENT MESH - DAYLYAI STYLE)
-   ========================================================================== */
 .hero-stage {
   position: relative;
   padding-top: 7.5rem;
   padding-bottom: 2rem;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 15%, #ff8c00 0%, #fa4616 26%, #b8142f 56%, #4a0612 85%, #160408 100%);
+  background: radial-gradient(circle at 50% 12%, #ff7800 0%, #fa4418 26%, #b8142f 55%, #4a0612 85%, #160408 100%);
 }
 
 /* Ambient Radial Lighting & Glowing Waves */
@@ -245,33 +242,56 @@ a {
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(255, 135, 0, 0.8) 0%, rgba(250, 60, 20, 0.6) 40%, rgba(180, 15, 45, 0.35) 70%, transparent 85%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(255, 125, 0, 0.75) 0%, rgba(250, 60, 20, 0.55) 40%, rgba(180, 15, 45, 0.3) 70%, transparent 85%);
 }
 
 .glow-top {
   top: -15%;
   left: 30%;
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(255, 170, 40, 0.7) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 160, 30, 0.65) 0%, transparent 70%);
 }
 
 .glow-right {
   top: 25%;
   right: -5%;
-  width: 520px;
-  height: 520px;
-  background: radial-gradient(circle, rgba(250, 70, 25, 0.65) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(250, 70, 25, 0.6) 0%, transparent 70%);
 }
 
 .glow-left {
   top: 35%;
   left: -5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(200, 20, 50, 0.5) 0%, transparent 70%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(200, 20, 50, 0.45) 0%, transparent 70%);
+}
+
+.silky-wave {
+  position: absolute;
+  width: 140%;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.35;
+}
+
+.wave-1 {
+  top: 25%;
+  left: -20%;
+  background: linear-gradient(90deg, transparent, rgba(255, 140, 90, 0.7), transparent);
+  transform: rotate(-12deg);
+}
+
+.wave-2 {
+  top: 45%;
+  right: -20%;
+  background: linear-gradient(90deg, transparent, rgba(255, 80, 60, 0.5), transparent);
+  transform: rotate(15deg);
 }
 
 /* Hero Container Grid */
@@ -299,8 +319,8 @@ a {
 /* --- Left Floating Glass Widget (Metrics & Curve) --- */
 .floating-widget {
   background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border-light);
   border-radius: var(--radius-card);
   padding: 1.5rem;
@@ -313,8 +333,6 @@ a {
 }
 
 .widget-right {
-  background: linear-gradient(145deg, rgba(255, 110, 30, 0.45) 0%, rgba(200, 20, 50, 0.5) 100%);
-  border: 1px solid rgba(255, 180, 100, 0.4);
   animation: floatRight 5s ease-in-out infinite;
   animation-delay: 2.5s;
 }
@@ -340,7 +358,7 @@ a {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
 }
 
@@ -387,7 +405,7 @@ a {
   display: flex;
   justify-content: space-between;
   font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
   padding-top: 0.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -404,91 +422,51 @@ a {
 
 .hero-portrait-stage {
   position: relative;
-  width: 230px;
-  height: 230px;
+  width: 220px;
+  height: 220px;
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* 3D Silky Ribbon Wings Flowing behind Subject */
-.hero-silky-wings {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 780px;
-  height: 380px;
-  pointer-events: none;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-}
 
-.silky-wing {
-  width: 390px;
-  height: 320px;
-  filter: drop-shadow(0 15px 30px rgba(255, 90, 0, 0.45));
-  opacity: 0.95;
-  transition: transform 0.6s ease;
-}
-
-.wing-left {
-  transform-origin: right center;
-  animation: floatWingLeft 6s ease-in-out infinite alternate;
-}
-
-.wing-right {
-  transform-origin: left center;
-  animation: floatWingRight 6s ease-in-out infinite alternate;
-}
-
-@keyframes floatWingLeft {
-  0% { transform: rotate(-2deg) translateY(0px) scale(0.98); }
-  100% { transform: rotate(3deg) translateY(-8px) scale(1.03); }
-}
-
-@keyframes floatWingRight {
-  0% { transform: rotate(2deg) translateY(0px) scale(0.98); }
-  100% { transform: rotate(-3deg) translateY(-8px) scale(1.03); }
-}
 
 .portrait-halo {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 145, 20, 0.9) 0%, rgba(250, 65, 20, 0.55) 45%, transparent 75%);
-  filter: blur(35px);
+  background: radial-gradient(circle, rgba(255, 140, 10, 0.85) 0%, rgba(250, 65, 20, 0.5) 45%, transparent 75%);
+  filter: blur(30px);
   z-index: 1;
 }
 
 .portrait-mesh-backlight {
   position: absolute;
-  width: 220px;
-  height: 220px;
+  width: 210px;
+  height: 210px;
   border-radius: 50%;
   background: radial-gradient(circle, #ff8800 0%, #ff4000 60%, transparent 90%);
-  filter: blur(16px);
+  filter: blur(15px);
   z-index: 1;
   animation: backlightPulse 4s ease-in-out infinite alternate;
 }
 
 @keyframes backlightPulse {
-  0% { transform: scale(0.95); opacity: 0.85; }
+  0% { transform: scale(0.95); opacity: 0.8; }
   100% { transform: scale(1.08); opacity: 1; }
 }
 
 .hero-blended-photo {
-  width: 200px;
-  height: 200px;
+  width: 195px;
+  height: 195px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center 16%;
   position: relative;
   z-index: 2;
-  border: 3px solid rgba(255, 255, 255, 0.65);
+  border: 3px solid rgba(255, 255, 255, 0.6);
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.4),
     0 0 35px rgba(255, 120, 40, 0.6);
@@ -507,19 +485,19 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 1.1rem;
-  border-radius: 12px;
-  background: #e61a38;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  font-size: 0.85rem;
-  font-weight: 800;
+  padding: 0.35rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(189, 26, 56, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 0.825rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: #ffffff;
-  box-shadow: 0 0 20px rgba(230, 26, 56, 0.6);
+  box-shadow: 0 0 20px rgba(189, 26, 56, 0.6);
 }
 
 .hero-main-title {
-  font-size: clamp(2.5rem, 4.6vw, 4rem);
+  font-size: clamp(2.4rem, 4.4vw, 3.85rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
@@ -551,7 +529,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.85rem 2.25rem;
+  padding: 0.85rem 2rem;
   border-radius: var(--radius-pill);
   background: #ffffff;
   color: #1f040a;
