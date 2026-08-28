@@ -204,8 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const filterValue = btn.getAttribute('data-filter');
 
       caseCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (filterValue === 'all' || filterValue === cardCategory) {
+        const cardCategory = card.getAttribute('data-category') || '';
+        const categories = cardCategory.split(' ');
+        if (filterValue === 'all' || categories.includes(filterValue)) {
           card.style.display = 'flex';
           setTimeout(() => {
             card.style.opacity = '1';
