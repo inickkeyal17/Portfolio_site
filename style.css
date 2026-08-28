@@ -459,19 +459,19 @@ a {
 }
 
 .hero-blended-photo {
-  width: 190px;
-  height: 190px;
+  width: 195px;
+  height: 195px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 16%;
   position: relative;
   z-index: 2;
-  border: 3px solid rgba(255, 255, 255, 0.5);
+  border: 3px solid rgba(255, 255, 255, 0.6);
   box-shadow: 
     0 15px 35px rgba(0, 0, 0, 0.4),
     0 0 35px rgba(255, 120, 40, 0.6);
-  mask-image: radial-gradient(circle, black 68%, rgba(0,0,0,0.85) 88%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle, black 68%, rgba(0,0,0,0.85) 88%, transparent 100%);
+  mask-image: radial-gradient(circle, black 72%, rgba(0,0,0,0.9) 88%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle, black 72%, rgba(0,0,0,0.9) 88%, transparent 100%);
 }
 
 .hero-center-copy {
