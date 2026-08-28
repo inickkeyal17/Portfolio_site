@@ -257,4 +257,61 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.reset();
     });
   }
+
+  // --- 8. Interactive Career Timeline (Click & Scroll Activation) ---
+  const timelineWrap = document.getElementById('interactiveTimeline');
+  if (timelineWrap) {
+    const timelineItems = timelineWrap.querySelectorAll('.timeline-glass-item');
+    const timelineNodes = timelineWrap.querySelectorAll('.timeline-node-glow');
+
+    const setTimelineStep = (step) => {
+      timelineWrap.classList.remove('step-1', 'step-2');
+      timelineWrap.classList.add(`step-${step}`);
+      
+      timelineItems.forEach(item => {
+        const itemStep = parseInt(item.getAttribute('data-step') || '1', 10);
+        if (itemStep === step) {
+          item.classList.add('active-step');
+        } else {
+          item.classList.remove('active-step');
+        }
+      });
+    };
+
+    // Default start on Step 1
+    setTimelineStep(1);
+
+    // Click on Card or Node to lock beam to that point
+    timelineItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const step = parseInt(item.getAttribute('data-step') || '1', 10);
+        setTimelineStep(step);
+      });
+    });
+
+    timelineNodes.forEach(node => {
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const step = parseInt(node.getAttribute('data-step') || '1', 10);
+        setTimelineStep(step);
+      });
+    });
+
+    // Scroll trigger: charge to node 2 when scrolled down to item 2
+    const observerOptions = {
+      root: null,
+      threshold: 0.5
+    };
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const step = parseInt(entry.target.getAttribute('data-step') || '1', 10);
+          setTimelineStep(step);
+        }
+      });
+    }, observerOptions);
+
+    timelineItems.forEach(item => timelineObserver.observe(item));
+  }
 });

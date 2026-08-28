@@ -1444,38 +1444,38 @@ a {
 }
 
 /* ==========================================================================
-   CAREER TIMELINE (ANIMATED CHARGING ENERGY RAIL)
+   CAREER TIMELINE (INTERACTIVE CHARGING ENERGY RAIL)
    ========================================================================== */
 .timeline-glass-wrap {
   max-width: 850px;
   margin: 0 auto;
   position: relative;
-  padding-left: 2.75rem;
+  padding-left: 2.85rem;
 }
 
-/* Background Track Rail */
+/* Background Track Rail (Pixel-perfect concentric alignment with nodes) */
 .timeline-track-rail {
   position: absolute;
   top: 1rem;
   bottom: 1.5rem;
-  left: 0.68rem;
+  left: 0.78rem;
   width: 4px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   overflow: visible;
 }
 
-/* Charging Liquid Energy Beam */
+/* Interactive Charging Liquid Energy Beam */
 .timeline-charging-beam {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 0%;
-  background: linear-gradient(180deg, rgba(255, 110, 74, 0.3) 0%, #fa5330 65%, #ffffff 100%);
-  box-shadow: 0 0 14px var(--coral-bright), 0 0 28px rgba(250, 83, 48, 0.65);
+  height: 38px; /* Default Step 1 */
+  background: linear-gradient(180deg, rgba(255, 110, 74, 0.4) 0%, #fa4418 70%, #ffffff 100%);
+  box-shadow: 0 0 16px var(--coral-bright), 0 0 30px rgba(250, 83, 48, 0.8);
   border-radius: 4px;
-  animation: beamChargeSequence 6s ease-in-out infinite;
+  transition: height 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
 }
 
 /* Leading Plasma Spark Head */
@@ -1489,47 +1489,24 @@ a {
   border-radius: 50%;
   background: #ffffff;
   box-shadow: 0 0 15px #ff6e4a, 0 0 30px #ffffff;
+  transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-@keyframes beamChargeSequence {
-  0% {
-    height: 0%;
-    opacity: 0;
-  }
-  5% {
-    height: 0%;
-    opacity: 1;
-  }
-  24% {
-    height: 35px; /* Reaches Point 1 */
-    opacity: 1;
-  }
-  44% {
-    height: 35px; /* Powers Point 1 */
-    opacity: 1;
-  }
-  72% {
-    height: 100%; /* Charges down to Point 2 */
-    opacity: 1;
-  }
-  90% {
-    height: 100%; /* Powers Point 2 */
-    opacity: 1;
-  }
-  96% {
-    height: 100%;
-    opacity: 0;
-  }
-  100% {
-    height: 0%;
-    opacity: 0;
-  }
+/* State: Step 1 (Charged to Node 1) */
+.timeline-glass-wrap.step-1 .timeline-charging-beam {
+  height: 38px;
+}
+
+/* State: Step 2 (Charged all the way down to Node 2) */
+.timeline-glass-wrap.step-2 .timeline-charging-beam {
+  height: 100%;
 }
 
 /* Timeline Item Container */
 .timeline-glass-item {
   position: relative;
   margin-bottom: 3.5rem;
+  cursor: pointer;
 }
 
 .timeline-glass-item:last-child {
@@ -1540,7 +1517,7 @@ a {
 .timeline-node-glow {
   position: absolute;
   top: 0.25rem;
-  left: -2.75rem;
+  left: -2.85rem;
   width: 1.65rem;
   height: 1.65rem;
   border-radius: 50%;
@@ -1550,7 +1527,8 @@ a {
   align-items: center;
   justify-content: center;
   z-index: 4;
-  transition: all 0.4s ease;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .node-inner-core {
@@ -1558,7 +1536,7 @@ a {
   height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  transition: all 0.4s ease;
+  transition: all 0.5s ease;
 }
 
 .node-pulse-ring {
@@ -1568,133 +1546,39 @@ a {
   border: 2px solid var(--coral-bright);
   opacity: 0;
   pointer-events: none;
+  transition: all 0.5s ease;
 }
 
-/* Node 1 Charging Animation */
-.node-1 {
-  animation: node1Charging 6s ease-in-out infinite;
+/* Active Node Glowing States */
+.timeline-glass-wrap.step-1 .node-1,
+.timeline-glass-wrap.step-2 .node-1,
+.timeline-glass-wrap.step-2 .node-2 {
+  border-color: #ffffff;
+  background: var(--coral-bright);
+  box-shadow: 0 0 20px #ff6e4a, 0 0 40px rgba(250, 83, 48, 0.8);
+  transform: scale(1.15);
 }
 
-.node-1 .node-pulse-ring {
-  animation: node1RingPulse 6s ease-in-out infinite;
+.timeline-glass-wrap.step-1 .node-1 .node-inner-core,
+.timeline-glass-wrap.step-2 .node-1 .node-inner-core,
+.timeline-glass-wrap.step-2 .node-2 .node-inner-core {
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
 }
 
-.node-1 .node-inner-core {
-  animation: node1CoreGlow 6s ease-in-out infinite;
+.timeline-glass-wrap.step-1 .node-1 .node-pulse-ring,
+.timeline-glass-wrap.step-2 .node-2 .node-pulse-ring {
+  opacity: 1;
+  animation: activeNodePulse 2.5s infinite;
 }
 
-@keyframes node1Charging {
-  0%, 18% {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: var(--bg-deep);
-    box-shadow: none;
-  }
-  24%, 92% {
-    border-color: #ffffff;
-    background: var(--coral-bright);
-    box-shadow: 0 0 20px #ff6e4a, 0 0 40px rgba(250, 83, 48, 0.7);
-  }
-  96%, 100% {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: var(--bg-deep);
-    box-shadow: none;
-  }
+@keyframes activeNodePulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  60% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
-@keyframes node1RingPulse {
-  0%, 20% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  24% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  35% {
-    opacity: 0;
-    transform: scale(2.2);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes node1CoreGlow {
-  0%, 18% {
-    background: rgba(255, 255, 255, 0.3);
-  }
-  24%, 92% {
-    background: #ffffff;
-    box-shadow: 0 0 10px #ffffff;
-  }
-  96%, 100% {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-/* Node 2 Charging Animation */
-.node-2 {
-  animation: node2Charging 6s ease-in-out infinite;
-}
-
-.node-2 .node-pulse-ring {
-  animation: node2RingPulse 6s ease-in-out infinite;
-}
-
-.node-2 .node-inner-core {
-  animation: node2CoreGlow 6s ease-in-out infinite;
-}
-
-@keyframes node2Charging {
-  0%, 68% {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: var(--bg-deep);
-    box-shadow: none;
-  }
-  74%, 92% {
-    border-color: #ffffff;
-    background: var(--coral-bright);
-    box-shadow: 0 0 20px #ff6e4a, 0 0 40px rgba(250, 83, 48, 0.7);
-  }
-  96%, 100% {
-    border-color: rgba(255, 255, 255, 0.25);
-    background: var(--bg-deep);
-    box-shadow: none;
-  }
-}
-
-@keyframes node2RingPulse {
-  0%, 68% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  74% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  85% {
-    opacity: 0;
-    transform: scale(2.2);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes node2CoreGlow {
-  0%, 68% {
-    background: rgba(255, 255, 255, 0.3);
-  }
-  74%, 92% {
-    background: #ffffff;
-    box-shadow: 0 0 10px #ffffff;
-  }
-  96%, 100% {
-    background: rgba(255, 255, 255, 0.3);
-  }
-}
-
-/* Timeline Cards Content & Sequential Lighting */
+/* Timeline Cards Content & Active Glowing Focus */
 .timeline-glass-content {
   background: var(--bg-card-glass);
   border: 1.5px solid var(--glass-border);
@@ -1706,42 +1590,26 @@ a {
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.item-1 .timeline-glass-content {
-  animation: item1CardLight 6s ease-in-out infinite;
+.timeline-company-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--coral-bright);
+  margin-top: 0.25rem;
 }
 
-.item-2 .timeline-glass-content {
-  animation: item2CardLight 6s ease-in-out infinite;
+/* Card Glow when Step is Active */
+.timeline-glass-wrap.step-1 .item-1 .timeline-glass-content,
+.timeline-glass-wrap.step-2 .item-2 .timeline-glass-content {
+  border-color: rgba(255, 110, 74, 0.7);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(250, 83, 48, 0.3);
+  transform: translateX(6px);
+  background: linear-gradient(145deg, rgba(42, 10, 18, 0.95) 0%, rgba(20, 4, 8, 0.98) 100%);
 }
 
-@keyframes item1CardLight {
-  0%, 18% {
-    border-color: var(--glass-border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-  24%, 92% {
-    border-color: rgba(255, 110, 74, 0.6);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(250, 83, 48, 0.2);
-  }
-  96%, 100% {
-    border-color: var(--glass-border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-}
-
-@keyframes item2CardLight {
-  0%, 68% {
-    border-color: var(--glass-border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-  74%, 92% {
-    border-color: rgba(255, 110, 74, 0.6);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(250, 83, 48, 0.2);
-  }
-  96%, 100% {
-    border-color: var(--glass-border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
+.timeline-glass-content:hover {
+  border-color: var(--coral-bright) !important;
+  transform: translateX(8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px var(--glow-coral) !important;
 }
 
 .timeline-glass-content:hover {
