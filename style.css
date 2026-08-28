@@ -1677,131 +1677,249 @@ a {
 /* ==========================================================================
    HONORS & AWARDS SECTION (PRESTIGE SHOWCASE)
    ========================================================================== */
-.prestige-awards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2.25rem;
-  max-width: 1150px;
-  margin: 0 auto;
-}
-
-.prestige-award-card {
-  background: linear-gradient(155deg, rgba(42, 12, 20, 0.88) 0%, rgba(20, 4, 8, 0.96) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.14);
-  border-radius: 24px;
-  padding: 2.5rem 2.25rem;
+/* ==========================================================================
+   HONORS & AWARDS SECTION (LUXURY HOLOGRAPHIC SHOWCASE)
+   ========================================================================== */
+.awards-luxury-section {
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  transition: all 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 140, 20, 0.14) 0%, rgba(189, 26, 56, 0.08) 45%, #140407 100%);
 }
 
-.prestige-award-card::before {
+.awards-ambient-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.award-stage-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.glow-gold {
+  top: 15%;
+  left: 20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 160, 30, 0.18) 0%, transparent 70%);
+}
+
+.glow-ruby {
+  bottom: 10%;
+  right: 20%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(189, 26, 56, 0.22) 0%, transparent 70%);
+}
+
+/* 2-Column Luxury Awards Grid */
+.luxury-awards-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual Luxury Award Plaque */
+.luxury-award-plaque {
+  background: linear-gradient(155deg, rgba(38, 10, 18, 0.92) 0%, rgba(18, 4, 8, 0.98) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 28px;
+  padding: 3rem 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.luxury-award-plaque::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, #ff9e3b 30%, #fa4b1d 70%, transparent 100%);
-  opacity: 0.8;
-  transition: opacity 0.4s ease;
+  background: linear-gradient(90deg, transparent 0%, #ffba42 30%, #ff5500 70%, transparent 100%);
+  opacity: 0.85;
 }
 
-.award-card-glow-bg {
+.luxury-award-plaque:hover {
+  transform: translateY(-10px) scale(1.015);
+  border-color: rgba(255, 160, 50, 0.7);
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 130, 40, 0.35);
+}
+
+/* Corner Metallic Accents */
+.plaque-corner-accent {
   position: absolute;
-  top: -20%;
-  right: -20%;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 120, 40, 0.15) 0%, transparent 70%);
-  filter: blur(30px);
+  width: 24px;
+  height: 24px;
   pointer-events: none;
-  transition: transform 0.5s ease;
+  opacity: 0.5;
 }
 
-.prestige-award-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 140, 60, 0.6);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 110, 40, 0.3);
+.plaque-corner-accent.top-left {
+  top: 14px;
+  left: 14px;
+  border-top: 2px solid #ffba42;
+  border-left: 2px solid #ffba42;
 }
 
-.prestige-award-card:hover .award-card-glow-bg {
-  transform: scale(1.3);
+.plaque-corner-accent.top-right {
+  top: 14px;
+  right: 14px;
+  border-top: 2px solid #ffba42;
+  border-right: 2px solid #ffba42;
 }
 
-/* Top Row: Shield & Engraved Date Badge */
-.award-top-row {
-  display: flex;
+/* Top Foil Ribbon */
+.plaque-foil-ribbon {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #ffd27d;
+  text-transform: uppercase;
+  background: rgba(255, 160, 40, 0.14);
+  padding: 0.25rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 186, 66, 0.35);
 }
 
-.award-badge-shield {
+.foil-star {
+  color: #ffaa00;
+  font-size: 0.8rem;
+}
+
+/* Plaque Inner Body Layout */
+.plaque-inner-body {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* 3D Floating Medallion with Orbital Rings */
+.plaque-trophy-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   position: relative;
-  width: 68px;
-  height: 68px;
-  min-width: 68px;
-  border-radius: 20px;
+  min-width: 105px;
+}
+
+.medallion-orbital-ring {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ring-outer {
+  width: 105px;
+  height: 105px;
+  border: 1.5px dashed rgba(255, 186, 66, 0.4);
+  animation: orbitRotate 14s linear infinite;
+}
+
+.ring-inner {
+  width: 92px;
+  height: 92px;
+  border: 1px solid rgba(255, 100, 50, 0.35);
+  animation: orbitRotateReverse 9s linear infinite;
+}
+
+@keyframes orbitRotate {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes orbitRotateReverse {
+  0% { transform: translate(-50%, -50%) rotate(360deg); }
+  100% { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+.medallion-glow-core {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.1rem;
+  position: relative;
+  z-index: 2;
   transition: transform 0.4s ease;
 }
 
-.gold-shield {
-  background: radial-gradient(circle at 30% 30%, rgba(255, 200, 100, 0.35) 0%, rgba(255, 110, 20, 0.25) 70%, rgba(189, 26, 56, 0.3) 100%);
-  border: 2px solid rgba(255, 200, 110, 0.6);
-  box-shadow: 0 0 25px rgba(255, 150, 40, 0.45), inset 0 0 15px rgba(255, 220, 140, 0.3);
+.award-theme-gold .medallion-glow-core {
+  background: radial-gradient(circle at 35% 35%, rgba(255, 230, 140, 0.45) 0%, rgba(255, 130, 20, 0.35) 60%, rgba(189, 26, 56, 0.4) 100%);
+  border: 2px solid rgba(255, 210, 120, 0.8);
+  box-shadow: 0 0 35px rgba(255, 160, 40, 0.6), inset 0 0 20px rgba(255, 235, 160, 0.4);
 }
 
-.coral-shield {
-  background: radial-gradient(circle at 30% 30%, rgba(255, 140, 90, 0.35) 0%, rgba(250, 70, 25, 0.25) 70%, rgba(140, 10, 30, 0.3) 100%);
-  border: 2px solid rgba(255, 150, 110, 0.6);
-  box-shadow: 0 0 25px rgba(250, 80, 40, 0.45), inset 0 0 15px rgba(255, 180, 140, 0.3);
+.award-theme-coral .medallion-glow-core {
+  background: radial-gradient(circle at 35% 35%, rgba(255, 160, 110, 0.45) 0%, rgba(250, 70, 25, 0.35) 60%, rgba(140, 10, 30, 0.4) 100%);
+  border: 2px solid rgba(255, 170, 130, 0.8);
+  box-shadow: 0 0 35px rgba(250, 90, 40, 0.6), inset 0 0 20px rgba(255, 190, 150, 0.4);
 }
 
-.prestige-award-card:hover .award-badge-shield {
-  transform: scale(1.08) rotate(3deg);
+.luxury-award-plaque:hover .medallion-glow-core {
+  transform: scale(1.1) rotate(5deg);
 }
 
-.award-date-engraved {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.78rem;
+.trophy-emoji-3d {
+  font-size: 2.75rem;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.medallion-laurel-badge {
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 0.35rem 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.65rem;
   border-radius: var(--radius-pill);
+  margin-top: 0.5rem;
 }
 
-.date-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--coral-bright);
-  box-shadow: 0 0 8px var(--coral-bright);
-}
-
-/* Card Main Content */
-.award-main-content {
+/* Plaque Content Column */
+.plaque-content-column {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
+  flex: 1;
 }
 
-.award-meta-tag {
+.plaque-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.plaque-edition-tag {
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -1809,15 +1927,39 @@ a {
   color: #ff9d66;
 }
 
-.prestige-award-heading {
-  font-size: 1.45rem;
+.plaque-date-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
   font-weight: 800;
+  letter-spacing: 0.06em;
   color: #ffffff;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
 }
 
-.award-issuer-badge {
+.live-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5500;
+  box-shadow: 0 0 8px #ff5500;
+}
+
+.plaque-award-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #ffe39f 40%, #ff9d42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plaque-issuer-row {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -1831,35 +1973,88 @@ a {
   color: #ffb885;
 }
 
-.prestige-award-desc {
+.plaque-description {
   font-size: 0.925rem;
   color: var(--text-dim);
   line-height: 1.65;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
 }
 
-/* Highlight Banner at Bottom */
-.award-highlight-banner {
+.plaque-description strong {
+  color: #ffffff;
+}
+
+/* Metrics Chip Matrix */
+.plaque-metrics-matrix {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   margin-top: 0.75rem;
-  padding: 0.85rem 1.15rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px dashed rgba(255, 140, 40, 0.35);
-  border-radius: 14px;
+}
+
+.metric-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.metric-chip:hover {
+  background: rgba(255, 140, 40, 0.15);
+  border-color: rgba(255, 160, 60, 0.5);
+  transform: translateY(-2px);
+}
+
+.chip-icon {
+  font-size: 0.9rem;
+}
+
+/* Plaque Bottom Bar & Holographic Seal */
+.plaque-bottom-bar {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  font-size: 0.86rem;
+  justify-content: space-between;
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.plaque-seal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #ffba42;
+  text-transform: uppercase;
+}
+
+.seal-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 186, 66, 0.25);
+  border: 1px solid #ffba42;
+  font-size: 0.65rem;
   color: #ffffff;
-  line-height: 1.45;
 }
 
-.highlight-star {
-  color: #ffb84d;
-  font-size: 1.1rem;
-}
-
-.highlight-text strong {
-  color: #ffcca0;
+.plaque-bar-sparkle {
+  color: #ffaa00;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  opacity: 0.8;
 }
 
 .credentials-modern-grid {
